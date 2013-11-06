@@ -90,12 +90,6 @@
     <Compile Include="single_var_withTOL.Designer.cs">
       <DependentUpon>single_var_withTOL.cs</DependentUpon>
     </Compile>
-    <Compile Include="test.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="test.Designer.cs">
-      <DependentUpon>test.cs</DependentUpon>
-    </Compile>
     <Compile Include="Conditions.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -124,15 +118,14 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="test.resx">
-      <DependentUpon>test.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PCM Interface Instrument.docx" />
+    <None Include="PCM Interface Instrument.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -51,6 +51,9 @@ namespace PCMInterface
 
         }
      
+        /// <summary>
+        /// define this variable have tolerance definition
+        /// </summary>
         [Category("Custom")]
         public bool with_tol
         {
@@ -82,6 +85,7 @@ namespace PCMInterface
                 have_tol = value;
             }
         }
+
         public override bool Check_Validation()
         {
             return base.Check_Validation();

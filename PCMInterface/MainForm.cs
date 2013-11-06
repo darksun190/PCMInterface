@@ -17,6 +17,9 @@ namespace PCMInterface
         protected object[] para;
         //private string all_text;
         private string _origin_file;
+        /// <summary>
+        /// the extention file name, like "para" or "pcm" without the dot"."
+        /// </summary>
         public string ext_name
         {
             get;
@@ -24,6 +27,9 @@ namespace PCMInterface
         }
         protected string folder;
         protected string _sub_f_name;
+        /// <summary>
+        /// the sub folder name, empty means the same path of the exe file
+        /// </summary>
         public string sub_f_name
         {
             get
@@ -39,14 +45,18 @@ namespace PCMInterface
                     folder = System.IO.Directory.GetCurrentDirectory();
             }
         }
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        /// <summary>
+        /// the example text , use origin_file to import a file
+        /// </summary>
         public string all_text
         {
             get;
 
             set;
         }
-
+        /// <summary>
+        /// import a file, it will read the file content to the all_text string automatically
+        /// </summary>
         [Editor("System.Windows.Forms.Design.FileNameEditor, System.Design", typeof(System.Drawing.Design.UITypeEditor))]
         //[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 

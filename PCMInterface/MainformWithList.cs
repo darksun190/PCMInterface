@@ -18,6 +18,9 @@ namespace PCMInterface
             InitializeComponent();
             this.sub_changed += new EventHandler(update_listview);
         }
+        /// <summary>
+        /// overwrite the old one, the listview depends on this folder
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public new string sub_f_name
         {

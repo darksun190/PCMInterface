@@ -12,8 +12,14 @@ using System.Collections.ObjectModel;
 
 namespace PCMInterface
 {
+    /// <summary>
+    /// this class contain a picture and can define maximum 10 parameters
+    /// each parameter had one corespond label,
+    /// which will be highlight when the end user focus on one input text field
+    /// </summary>
     public partial class _10paras_Pic : baseUI
     {
+        
         protected List<single_var_withTOL> paras;
         protected Label[] highlight_label;
         protected PictureBox pic_box;
@@ -23,6 +29,9 @@ namespace PCMInterface
         private int _var_no;
         private bool[] _have_tol;
         #region interface
+        /// <summary>
+        /// define if some of these variables have tolerance.
+        /// </summary>
         [Category("Custom")]
         public bool[] With_tolerance
         {
@@ -43,6 +52,9 @@ namespace PCMInterface
                 }
             }
         }
+        /// <summary>
+        /// define how many variables will be shown, others will be hidden and ignored.
+        /// </summary>
         [Category("Custom")]
         public int var_no
         {
@@ -67,6 +79,9 @@ namespace PCMInterface
             }
 
         }
+        /// <summary>
+        /// define the highlight color of the labels, when the end user focus on the textbox.
+        /// </summary>
         [Category("Custom")]
         public Color Highlight_Color
         {
@@ -79,6 +94,9 @@ namespace PCMInterface
                 h_color = value;
             }
         }
+        /// <summary>
+        /// select the picture showed on the control
+        /// </summary>
         [Category("Custom")]
         public Image select_pic
         {
@@ -91,6 +109,9 @@ namespace PCMInterface
                 pic_box.Image = value;
             }
         }
+        /// <summary>
+        /// define the highlight labels' position
+        /// </summary>
         [Category("Custom")]
         public Point[] Label_Pos
         {
@@ -111,6 +132,9 @@ namespace PCMInterface
                 }
             }
         }
+        /// <summary>
+        /// define the variable key names. notice start from 0, the number more tha var_no will be ignored
+        /// </summary>
         [Category("Custom")]
         public string[] Varible_Name
         {
@@ -238,6 +262,11 @@ namespace PCMInterface
         }
         #endregion
         #region public function
+        /// <summary>
+        /// try to find the corespond key and values for these 10 parameters from the dic.
+        /// </summary>
+        /// <param name="dic"></param>
+        /// <returns></returns>
         public override bool Read_Parameter(Dictionary<string, string> dic)
         {
             bool result=true;
@@ -248,6 +277,11 @@ namespace PCMInterface
             }
             return result;
         }
+        /// <summary>
+        /// get every value from the textbox, input by the end user, import it to the dic
+        /// </summary>
+        /// <param name="dic"></param>
+        /// <returns></returns>
         public override bool Write_Parameter(Dictionary<string, string> dic)
         {
             for (int i = 0; i < _var_no; ++i)
@@ -257,6 +291,10 @@ namespace PCMInterface
             return true;
           
         }
+        /// <summary>
+        /// check every textbox was well input
+        /// </summary>
+        /// <returns></returns>
         public override bool Check_Validation()
         {
             for (int i = 0; i < _var_no; ++i)

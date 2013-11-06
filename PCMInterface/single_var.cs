@@ -10,8 +10,14 @@ using System.Windows.Forms;
 
 namespace PCMInterface
 {
+    /// <summary>
+    /// a simple variable define control
+    /// </summary>
     public partial class single_var : baseUI
     {
+        /// <summary>
+        /// the variable value
+        /// </summary>
         public string var_value;
         protected Label name_label;
         protected TextBox value_textbox;
@@ -49,9 +55,12 @@ namespace PCMInterface
             this.ResumeLayout(false);
             #endregion
 
-          
+
         }
-           #region "properties"
+        #region "properties"
+        /// <summary>
+        /// variable key name
+        /// </summary>
         [Category("Custom")]
         public string varible_name
         {
@@ -64,6 +73,9 @@ namespace PCMInterface
                 name_label.Text = value;
             }
         }
+        /// <summary>
+        /// define the input value only accept number or not
+        /// </summary>
         [Category("Custom")]
         public bool number_only
         {
@@ -71,7 +83,7 @@ namespace PCMInterface
             set;
         }
         #endregion
-        
+
         override public bool Check_Validation()
         {
             if (value_textbox.Text == "")
@@ -86,14 +98,14 @@ namespace PCMInterface
             if (dic.Keys.Contains(name_label.Text))
             {
                 value_textbox.Text = dic[name_label.Text];
-                 return true;
+                return true;
             }
             else
             {
                 value_textbox.Text = "";
                 return false;
             }
-          
+
         }
         override public bool Write_Parameter(Dictionary<string, string> dic)
         {

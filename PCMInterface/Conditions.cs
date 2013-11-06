@@ -12,9 +12,10 @@ using System.Windows.Forms.Design;
 
 namespace PCMInterface
 {
-    [
-    Designer(typeof(TestControlBaseDesigner))
-    ]
+    /// <summary>
+    /// this is a container, drag other controls to this panel
+    /// </summary>
+    [Designer(typeof(TestControlBaseDesigner))]
     public partial class Conditions : UserControl
     {
         List<Panel> panels;
@@ -22,7 +23,7 @@ namespace PCMInterface
         protected string _var_name;
         public Conditions()
         {
-            _list_source = new string[2] { "value1" , "value2" };
+            _list_source = new string[2] { "value1", "value2" };
 
             panels = new List<Panel>();
             for (int i = 0; i < 10; ++i)
@@ -30,7 +31,7 @@ namespace PCMInterface
                 panels.Add(new Panel());
                 panels[i].Location = new Point(0, 30);
                 panels[i].Size = new Size(600, 420);
-                panels[i].Name = "panels["+i.ToString()+"]";
+                panels[i].Name = "panels[" + i.ToString() + "]";
                 panels[i].Move += new EventHandler(panels_moved);
                 this.Controls.Add(panels[i]);
             }
@@ -41,6 +42,9 @@ namespace PCMInterface
 
             comboBox1.DataSource = _list_source;
         }
+        /// <summary>
+        /// define the condition variable key name. like Type = Cone, define Type here
+        /// </summary>
         [Category("Custom")]
         public string Variable_Name
         {
@@ -54,7 +58,9 @@ namespace PCMInterface
                 label1.Text = "if " + value + " = ";
             }
         }
-
+        /// <summary>
+        /// switch the current selection of the comboBox 
+        /// </summary>
         [Category("Custom")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public int Current_Selection
@@ -73,6 +79,9 @@ namespace PCMInterface
                 panels[comboBox1.SelectedIndex].Show();
             }
         }
+        /// <summary>
+        /// define the content of the combobox, usually the possible values of the condition
+        /// </summary>
         [Category("Custom")]
         public string[] list_str
         {
@@ -85,11 +94,16 @@ namespace PCMInterface
                 _list_source = value;
                 comboBox1.DataSource = null;
                 comboBox1.DataSource = _list_source;
-                
+
             }
         }
 
         #region interface
+        /// <summary>
+        /// try to find the corespond key and values for these 10 parameters from the dic.
+        /// </summary>
+        /// <param name="dic"></param>
+        /// <returns></returns>
         public bool Read_Parameter(Dictionary<string, string> dic)
         {
             if (dic.Keys.Contains(_var_name))
@@ -117,6 +131,10 @@ namespace PCMInterface
                 return false;
             }
         }
+        /// <summary>
+        /// check every textbox was well input
+        /// </summary>
+        /// <returns></returns>
         public bool Check_Validation()
         {
             foreach (Control c in panels[comboBox1.SelectedIndex].Controls)
@@ -135,6 +153,11 @@ namespace PCMInterface
             }
             return true;
         }
+        /// <summary>
+        /// get every value from the textbox, input by the end user, import it to the dic
+        /// </summary>
+        /// <param name="dic"></param>
+        /// <returns></returns>
         public bool Write_Parameter(Dictionary<string, string> dic)
         {
             string key = _var_name;
@@ -255,11 +278,13 @@ namespace PCMInterface
         {
             ((Panel)sender).Parent = this;
 
-            ((Panel)sender).Location =new Point(0,30);
+            ((Panel)sender).Location = new Point(0, 30);
             return;
         }
     }
-
+    /// <summary>
+    /// to make the panels inside can contain the other controls and designable.
+    /// </summary>
     public class TestControlBaseDesigner : ControlDesigner
     {
         public override void Initialize(IComponent component)
@@ -277,5 +302,5 @@ namespace PCMInterface
             EnableDesignMode(ctl.panel8, "panel8");
             EnableDesignMode(ctl.panel9, "panel9");
         }
-    } 
+    }
 }
