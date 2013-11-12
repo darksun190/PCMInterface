@@ -64,7 +64,7 @@
             this.MaximumSize = new System.Drawing.Size(600, 450);
             this.MinimumSize = new System.Drawing.Size(600, 450);
             this.Name = "Conditions";
-            this.Size = new System.Drawing.Size(600, 450);
+            this.Size = new System.Drawing.Size(598, 448);
             this.ResumeLayout(false);
 
         }
