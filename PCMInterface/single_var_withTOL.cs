@@ -17,6 +17,7 @@ namespace PCMInterface
         protected TextBox lt_textbox;
         public single_var_withTOL()
         {
+            this.Resize -= single_var_Resize;
             have_tol = false;
             ut_textbox = new TextBox();
             lt_textbox = new TextBox();
@@ -49,12 +50,15 @@ namespace PCMInterface
             ut_textbox.TextChanged += new EventHandler(textBox1_TextChanged);
             lt_textbox.TextChanged += new EventHandler(textBox1_TextChanged);
 
+            this.SizeChanged += single_var_TOL_Resize;
+            this.MinimumSize = new Size(160, 20);
         }
-     
+
+        [Category("Custom")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         /// <summary>
         /// define this variable have tolerance definition
         /// </summary>
-        [Category("Custom")]
         public bool with_tol
         {
             get
@@ -66,26 +70,52 @@ namespace PCMInterface
                 if (value)
                 {
                     number_only = true;
-                    this.Size = new Size(240, 40);
-                    this.name_label.Location = new Point(0, 10);
-                    this.value_textbox.Location = new Point(80, 10);
-                    ut_textbox.Location = new Point(160, 0);
-                    lt_textbox.Location = new Point(160, 20);
                     this.ut_textbox.Show();
-                    this.lt_textbox.Show();
+                    this.lt_textbox.Show(); 
+                    this.Size = new Size(240, 40);
+
+                    name_label.Location = new Point(0, 10);
+                    name_label.Size = new Size(this.Width - 160, 20);
+                    ut_textbox.Location = new Point(this.Width - 80, 0);
+                    lt_textbox.Location = new Point(this.Width - 80, 20);
+                    value_textbox.Location = new Point(this.Width - 160, 10);
                 }
                 else
                 {
-                    this.Size = new Size(160, 20);
-                    this.name_label.Location = new Point(0, 0);
-                    this.value_textbox.Location = new Point(80, 0);
+
                     ut_textbox.Hide();
                     lt_textbox.Hide();
+                    this.Size = new Size(160, 20);
+                    name_label.Location = new Point(0, 0);
+                    name_label.Size = new Size(this.Width - 80, 20);
+                    value_textbox.Location = new Point(this.Width - 80, 0); 
+               
                 }
                 have_tol = value;
+
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        protected void single_var_TOL_Resize(object sender, EventArgs e)
+        {
+
+            if (with_tol)
+            {
+                name_label.Location = new Point(0, 10);
+                name_label.Size = new Size(this.Width - 160, 20);
+                ut_textbox.Location = new Point(this.Width - 80,0);
+                lt_textbox.Location = new Point(this.Width - 80, 20);
+                value_textbox.Location = new Point(this.Width - 160, 10);
+            }
+            else
+            {
+                name_label.Location = new Point(0, 0);
+                name_label.Size = new Size(this.Width - 80, 20);
+                value_textbox.Location = new Point(this.Width - 80, 0);
+            }
+            this.value_textbox.Size = new Size(80, 20);
+        }
         public override bool Check_Validation()
         {
             return base.Check_Validation();
