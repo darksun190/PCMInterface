@@ -39,7 +39,7 @@ namespace PCMInterface
             set
             {
                 _sub_f_name = value;
-                if (_sub_f_name != null)
+                if (_sub_f_name != "")
                     folder = Path.Combine(System.IO.Directory.GetCurrentDirectory(), _sub_f_name);
                 else
                     folder = System.IO.Directory.GetCurrentDirectory();
