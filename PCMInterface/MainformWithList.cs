@@ -17,11 +17,12 @@ namespace PCMInterface
         {
             InitializeComponent();
             this.sub_changed += new EventHandler(update_listview);
+            sub_f_name = "";
         }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         /// <summary>
         /// overwrite the old one, the listview depends on this folder
         /// </summary>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public new string sub_f_name
         {
             get
@@ -30,8 +31,11 @@ namespace PCMInterface
             }
             set
             {
-                _sub_f_name = value;
-                if (_sub_f_name != null)
+                if (value == "")
+                    _sub_f_name = "";
+                else
+                    _sub_f_name = value;
+                if (_sub_f_name != "")
                     folder = Path.Combine(System.IO.Directory.GetCurrentDirectory(), _sub_f_name);
                 else
                     folder = System.IO.Directory.GetCurrentDirectory();
