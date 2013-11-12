@@ -18,15 +18,20 @@ namespace PCMInterface
         /// <summary>
         /// the variable value
         /// </summary>
+        protected string _tt_text;
         public string var_value;
         protected Label name_label;
         protected TextBox value_textbox;
+        protected System.Windows.Forms.ToolTip toolTip1;
         public single_var()
         {
             InitializeComponent();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             name_label = new Label();
             value_textbox = new TextBox();
 
+            this.Resize += single_var_Resize;
+            this.MinimumSize = new Size(160, 20);
             #region controls
             this.SuspendLayout();
             this.Size = new Size(160, 20);
@@ -41,7 +46,7 @@ namespace PCMInterface
             name_label.Location = new Point(0, 0);
             name_label.Size = new Size(80, 20);
             name_label.Text = "label";
-            name_label.TextAlign = ContentAlignment.MiddleCenter;
+            name_label.TextAlign = ContentAlignment.MiddleLeft;
             //
             // value_textbox
             //
@@ -57,7 +62,29 @@ namespace PCMInterface
 
 
         }
+
+        protected void single_var_Resize(object sender, EventArgs e)
+        {
+            name_label.Location = new Point(0, 0);
+            name_label.Size = new Size(this.Width - 80,20);
+            value_textbox.Location = new Point(this.Width - 80, 0);
+            value_textbox.Width = 80;
+            
+        }
         #region "properties"
+        [Category("Custom")]
+        public string tooltipText
+        {
+            get
+            {
+                return _tt_text;
+            }
+            set
+            {
+                toolTip1.SetToolTip(name_label, value);
+                _tt_text = value;
+            }
+        }
         /// <summary>
         /// variable key name
         /// </summary>
