@@ -327,7 +327,8 @@ namespace PCMInterface
                     master_dic.Remove(key);
                 }
                 master_dic.Add(key, value);
-                comment_dic.Add(key, comment);
+                if(!comment_dic.ContainsKey(key))
+                    comment_dic.Add(key, comment);
                 //save the para to the dictionary
             }
 
