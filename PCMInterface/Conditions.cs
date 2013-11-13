@@ -30,7 +30,7 @@ namespace PCMInterface
             {
                 panels.Add(new Panel());
                 panels[i].Location = new Point(0, 30);
-                panels[i].Size = new Size(600, 420);
+                panels[i].Size = new Size(300, 200);
                 panels[i].Name = "panels[" + i.ToString() + "]";
                 panels[i].Move += new EventHandler(panels_moved);
                 this.Controls.Add(panels[i]);

@@ -61,10 +61,10 @@
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
-            this.MaximumSize = new System.Drawing.Size(600, 450);
-            this.MinimumSize = new System.Drawing.Size(600, 450);
+            this.MaximumSize = new System.Drawing.Size(300, 230);
+            this.MinimumSize = new System.Drawing.Size(300, 230);
             this.Name = "Conditions";
-            this.Size = new System.Drawing.Size(598, 448);
+            this.Size = new System.Drawing.Size(300, 230);
             this.ResumeLayout(false);
 
         }
