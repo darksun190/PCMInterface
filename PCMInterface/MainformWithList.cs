@@ -18,6 +18,7 @@ namespace PCMInterface
             InitializeComponent();
             this.sub_changed += new EventHandler(update_listview);
             sub_f_name = "";
+            this.button_Save.Click += update_listview;
         }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         /// <summary>
